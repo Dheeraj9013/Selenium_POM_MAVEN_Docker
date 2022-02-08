@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+
+
+<suite name="OpenCart Automation Test">
+	<listeners>
+	<listener class-name="com.qa.opencart.listners.AnnotationTransformer"></listener>
+		<listener
+			class-name="com.qa.opencart.listners.ExtentReportListener"></listener>
+		<listener
+			class-name="com.qa.opencart.listners.TestAllureListener"></listener>
+	</listeners>
+	<test name="Login Page">
+		<classes>
+			<class name="com.qa.opencart.tests.LoginPageTest"></class>
+		</classes>
+	</test>
+	<test name= "Accounts page">
+		<classes>
+			<class name="com.qa.opencart.tests.AccountsPageTest"></class>
+		</classes>
+
+	</test>
+</suite>
