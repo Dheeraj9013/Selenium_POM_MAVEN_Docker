@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -83,6 +84,7 @@ public class DriverFactory {
 		getDriver().manage().window().maximize();
 		getDriver().manage().deleteAllCookies();
 		getDriver().get(prop.getProperty("url"));
+		getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return getDriver();
 
 	}
