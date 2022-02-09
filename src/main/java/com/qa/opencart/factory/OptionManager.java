@@ -17,7 +17,9 @@ public class OptionManager {
 	public ChromeOptions getChromeOptions() {
 
 		co = new ChromeOptions();
-		System.out.println(prop.getProperty("headless"));
+		
+		co.addArguments("disable-dev-shm-usage"); //overcome limited resource  problems
+		co.addArguments("--no-sandbox"); // By os Security model
 		if (Boolean.parseBoolean(prop.getProperty("headless"))) {
 			
 			co.addArguments("--headless");
