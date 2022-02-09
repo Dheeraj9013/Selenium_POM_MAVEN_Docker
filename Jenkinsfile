@@ -10,12 +10,12 @@ agent any
             }
         }
         
-        stage('docker-grid') {
-            steps {
+        //stage('docker-grid') {
+            //steps {
                
-               bat "docker-compose up -d"
-            }
-        }
+           //    bat "docker-compose up -d"
+         //   }
+       // }
         
         stage('Test') {
             steps {
