@@ -7,7 +7,9 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
+
 
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.pages.AccountDetailsChangePage;
@@ -37,10 +39,18 @@ public class BaseTest {
 	
 	
 	@BeforeTest
-	public void setup() {
+	@Parameters({"browser" ,"browserversion"})
+	public void setup(String browser , String browserVersion) {
 		
 		fac = new DriverFactory();
 		prop = fac.init_properties();
+		
+		if(browser!=null) {
+			prop.setProperty("browser", browser);
+			prop.setProperty("browserversion",browserVersion);
+		}
+		
+		
 		driver = fac.init_driver(prop);
 		logpage =  new LoginPage(driver);
 		softassert = new SoftAssert();

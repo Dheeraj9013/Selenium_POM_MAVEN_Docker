@@ -3,18 +3,49 @@
 
 
 
-<suite name="OpenCart Automation Test">
+<suite name="OpenCart Automation Test" parallel="tests"
+	thread-count="4">
 	<listeners>
-	<listener class-name="com.qa.opencart.listners.AnnotationTransformer"></listener>
+		<listener
+			class-name="com.qa.opencart.listners.AnnotationTransformer"></listener>
 		<listener
 			class-name="com.qa.opencart.listners.ExtentReportListener"></listener>
 		<listener
 			class-name="com.qa.opencart.listners.TestAllureListener"></listener>
 	</listeners>
-	<test name="Login Page">
+
+
+	<test name="Login Page-ch-94">
+		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="browserversion" value="94"></parameter>
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest"></class>
 		</classes>
 	</test>
-	
+
+	<test name="Login Page-ff-92">
+		<parameter name="browser" value="firefox"></parameter>
+		<parameter name="browserversion" value="92"></parameter>
+		<classes>
+			<class name="com.qa.opencart.tests.LoginPageTest"></class>
+		</classes>
+	</test>
+
+
+	<test name="Account Page-ch-87">
+		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="browserversion" value="87"></parameter>
+		<classes>
+			<class name="com.qa.opencart.tests.AccountsPageTest"></class>
+		</classes>
+	</test>
+
+	<test name="Account Page-ff-83">
+		<parameter name="browser" value="firefox"></parameter>
+		<parameter name="browserversion" value="83"></parameter>
+		<classes>
+			<class name="com.qa.opencart.tests.AccountsPageTest"></class>
+		</classes>
+	</test>
+
 </suite>
