@@ -7,7 +7,7 @@ import com.qa.opencart.utils.ElementUtil;
 
 import io.qameta.allure.Step;
 
-public class LoginPage {
+public class LoginPage  {
 	//1- declare private driver
 	private WebDriver driver;
 	private ElementUtil util;
