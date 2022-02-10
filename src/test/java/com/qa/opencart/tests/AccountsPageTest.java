@@ -33,7 +33,7 @@ public class AccountsPageTest extends BaseTest {
 	
 	@Description("Verify Demo Page Front text")
 	@Severity(SeverityLevel.MINOR)
-	@Test(priority=3,enabled=true)
+	@Test(priority=3,enabled=false)
 	
 	public void verifydemoPageFrontText() {
 		demopage = accountpage.openDemoLink();
