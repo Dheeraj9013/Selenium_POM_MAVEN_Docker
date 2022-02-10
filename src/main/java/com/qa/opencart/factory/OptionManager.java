@@ -18,8 +18,8 @@ public class OptionManager {
 
 		co = new ChromeOptions();
 		
-//		co.addArguments("disable-dev-shm-usage"); //overcome limited resource  problems
-//		co.addArguments("--no-sandbox"); // By os Security model
+		co.addArguments("disable-dev-shm-usage"); //overcome limited resource  problems
+		co.addArguments("--no-sandbox"); // By os Security model
 		if (Boolean.parseBoolean(prop.getProperty("headless"))) {
 			
 			co.addArguments("--headless");
