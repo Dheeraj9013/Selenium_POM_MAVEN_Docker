@@ -168,7 +168,7 @@ public class DriverFactory {
 						prop.load(fis);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						System.out.println("IOEXCEPTION will trigger");
 					}
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block

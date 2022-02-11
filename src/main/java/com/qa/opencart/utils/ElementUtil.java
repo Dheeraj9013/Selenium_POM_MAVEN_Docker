@@ -20,62 +20,57 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.opencart.factory.DriverFactory;
 
-public class ElementUtil extends DriverFactory{
+public class ElementUtil extends DriverFactory {
 
 	WebDriver driver;
 	JavaScriptUtil jsUtil;
-	
-	
 
 	public ElementUtil(WebDriver driver) {
 		this.driver = driver;
-		
+
 		jsUtil = new JavaScriptUtil(this.driver);
-		
 
 	}
 
 	public List<WebElement> getElements(By locator) {
 		List<WebElement> elementsList = driver.findElements(locator);
-		
+
 		return elementsList;
 	}
 
-	public WebElement getElement(By locator) {
+	public WebElement getElement(By locator) throws InterruptedException {
 		WebElement element = null;
-		try {
-			
+		
+
 			System.out.println("locator is : " + locator);
 			element = driver.findElement(locator);
-			
+
 			System.out.println(highlight);
 			if (Boolean.parseBoolean(highlight)) {
 				jsUtil.flash(element);
 			}
 			System.out.println("WebElement is created successfully : " + locator);
+			return element;
 
-		} catch (Exception e) {
-			System.out.println("some exception got occurred with this locator: " + locator);
-		}
-		return element;
+		
 	}
 
-	public void doSendKeys(By locator, String value) {
+	public void doSendKeys(By locator, String value) throws InterruptedException {
 		waitForElementPresent(locator, 10, 1);
 		getElement(locator).sendKeys(value);
 	}
 
-	public void doClick(By locator) {
+	public void doClick(By locator) throws InterruptedException {
 		waitForElementPresent(locator, 10, 1);
 		getElement(locator).click();
 	}
 
-	public String doGetText(By locator) {
+	public String doGetText(By locator) throws InterruptedException {
 		waitForElementPresent(locator, 10, 1);
 		return getElement(locator).getText();
 	}
 
-	public boolean doIsDisplayed(By locator) {
+	public boolean doIsDisplayed(By locator) throws InterruptedException {
 		waitForElementPresent(locator, 10, 1);
 		return getElement(locator).isDisplayed();
 	}
@@ -83,26 +78,26 @@ public class ElementUtil extends DriverFactory{
 	// **********************************Drop Down Utils
 	// *********************************
 
-	public void doSelectByVisibleText(By locator, String value) {
+	public void doSelectByVisibleText(By locator, String value) throws InterruptedException {
 		Select select = new Select(getElement(locator));
 		select.selectByVisibleText(value);
 	}
 
-	public void doSelectByIndex(By locator, String index) {
+	public void doSelectByIndex(By locator, String index) throws InterruptedException {
 		Select select = new Select(getElement(locator));
 		select.selectByIndex(Integer.parseInt(index));
 	}
 
-	public void doSelectByValue(By locator, String value) {
+	public void doSelectByValue(By locator, String value) throws InterruptedException {
 		Select select = new Select(getElement(locator));
 		select.selectByValue(value);
 	}
 
-	public int doDropDownOptionsCount(By locator) {
+	public int doDropDownOptionsCount(By locator) throws InterruptedException {
 		return doGetDropDownOptions(locator).size();
 	}
 
-	public ArrayList<String> doGetDropDownOptions(By locator) {
+	public ArrayList<String> doGetDropDownOptions(By locator) throws InterruptedException {
 		ArrayList<String> ar = new ArrayList<String>();
 		Select select = new Select(getElement(locator));
 		List<WebElement> OptionsList = select.getOptions();
@@ -114,7 +109,7 @@ public class ElementUtil extends DriverFactory{
 		return ar;
 	}
 
-	public void doSelectDropDownValue(By locator, String value) {
+	public void doSelectDropDownValue(By locator, String value) throws InterruptedException {
 		Select selectday = new Select(getElement(locator));
 		List<WebElement> OptionsList = selectday.getOptions();
 
@@ -174,19 +169,19 @@ public class ElementUtil extends DriverFactory{
 	// **********************************Actions class Utils
 	// *********************************
 
-	public void doDragAndDrop(By source, By target) {
+	public void doDragAndDrop(By source, By target) throws InterruptedException {
 		Actions action = new Actions(driver);
 		WebElement sourceEle = getElement(source);
 		WebElement targetEle = getElement(target);
 		action.dragAndDrop(sourceEle, targetEle).build().perform();
 	}
 
-	public void doActionsSendKeys(By locator, String value) {
+	public void doActionsSendKeys(By locator, String value) throws InterruptedException {
 		Actions action = new Actions(driver);
 		action.sendKeys(getElement(locator), value).build().perform();
 	}
 
-	public void doActionsClick(By locator) {
+	public void doActionsClick(By locator) throws InterruptedException {
 		waitForElementPresent(locator, 10, 1);
 		Actions action = new Actions(driver);
 		action.click(getElement(locator)).build().perform();
@@ -211,7 +206,7 @@ public class ElementUtil extends DriverFactory{
 		return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 	}
 
-	public WebElement waitForElementToBeVisible(By locator, int timeout) {
+	public WebElement waitForElementToBeVisible(By locator, int timeout) throws InterruptedException {
 		WebElement element = getElement(locator);
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -279,7 +274,6 @@ public class ElementUtil extends DriverFactory{
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-	
-	
+
 	}
 }
