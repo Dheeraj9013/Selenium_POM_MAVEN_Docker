@@ -52,7 +52,7 @@ public class ElementUtil extends DriverFactory {
 						jsUtil.flash(element);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						System.out.println("print IO Exception");
 					}
 				
 			}
