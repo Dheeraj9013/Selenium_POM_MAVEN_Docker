@@ -134,6 +134,12 @@ public class DriverFactory {
 		if (envName == null) {
 			try {
 				fis = new FileInputStream("./src/test/resources/config/config.properties");
+				try {
+					prop.load(fis);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -158,6 +164,12 @@ public class DriverFactory {
 			case "qa":
 				try {
 					fis = new FileInputStream("./src/test/resources/config/config.qa.properties");
+					try {
+						prop.load(fis);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -182,11 +194,11 @@ public class DriverFactory {
 			}
 		}
 
-		try {
-			prop.load(fis);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			prop.load(fis);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		return prop;
 	}
