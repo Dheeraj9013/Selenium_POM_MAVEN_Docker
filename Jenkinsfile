@@ -34,7 +34,7 @@ agent any
         stage('SonarQube') {
         	steps {
                 	withSonarQubeEnv('sonar123'){
-                	  bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar' 
+                	  bat 'mvn clean sonar:sonar' 
                 	}
 
                     
