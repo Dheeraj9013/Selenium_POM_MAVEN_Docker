@@ -99,7 +99,7 @@ public class JavaScriptUtil {
 		js.executeScript("document.getElementByName('" + name + "').value='" + value + "'");
 	}
 
-	public void checkPageIsReady() {
+	public void checkPageIsReady() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// Initially bellow given if condition will check ready state of page.
 		if (js.executeScript("return document.readyState").toString().equals("complete")) {
@@ -112,11 +112,9 @@ public class JavaScriptUtil {
 		// You can replace your value with 25 If you wants to Increase or
 		// decrease wait time.
 		for (int i = 0; i < 25; i++) {
-			try {
+			
 				Thread.sleep(1000);
-			} catch (InterruptedException ie) {
-				ie.printStackTrace();
-			}
+			
 			// To check page ready state.
 			if (js.executeScript("return document.readyState").toString().equals("complete")) {
 				break;
