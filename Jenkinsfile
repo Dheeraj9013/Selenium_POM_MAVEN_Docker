@@ -33,7 +33,7 @@ agent any
        
         stage('SonarQube') {
         	steps {
-                	withSonarQubeEnv('SonarQube'){
+                	withSonarQubeEnv('sonar123'){
                 	  bat 'mvn sonar:sonar' 
                 	}
 
