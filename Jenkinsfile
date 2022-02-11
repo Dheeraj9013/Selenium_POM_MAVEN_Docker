@@ -1,40 +1,40 @@
-pipeline { 
-agent any 
-tools{
+pipeline 
+{
+    agent any
     
-    maven "maven"
-}
-
-	
-    stages {
-   
-    stage ('Build Jar') { 
-            steps{
-            	git 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
-                bat "mvn clean install -DskipTests=true"
-
-            }
+    tools{
+    	maven 'maven'
         }
-        
-        //stage('docker-grid') {
-            //steps {
-               
-           //    bat "docker-compose up -d"
-         //   }
-       // }
-        
-        stage('Test') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    bat "mvn clean install"
+
+    stages 
+    {
+        stage('Build') 
+        {
+            steps 
+            {
+                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            post 
+            {
+                success 
+                {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
         
-       
         
-         
-       
+        stage('Regression Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/naveenanimation20/Sept2021POM.git'
+                    sh "mvn clean install"
+                }
+            }
+        }
+        
         stage('SonarQube') {
         	steps {
                 	withSonarQubeEnv('sonar123'){
@@ -46,9 +46,21 @@ tools{
                 }
         	    
         	}
-
-    		
-  	
+                
+     
+        stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
+            }
+        }
         
         
         stage('Publish Extent Report'){
@@ -62,17 +74,5 @@ tools{
                                   reportTitles: ''])
             }
         }
-        
-        
-        
-    
-        
-                
-     
-        
-        
-        
-        }
-
- }
- 
+    }
+}
