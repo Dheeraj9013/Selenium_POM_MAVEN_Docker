@@ -35,18 +35,7 @@ pipeline
             }
         }
         
-        stage('SonarQube') {
-        	steps {
-                	withSonarQubeEnv('sonar123'){
-                	git 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker.git'
-                	bat  "mvn sonar:sonar" 
-  					  
-                	}
-
-                    
-                }
-        	    
-        	}
+        
                 
      
         stage('Publish Allure Reports') {
