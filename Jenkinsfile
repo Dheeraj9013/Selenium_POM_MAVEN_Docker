@@ -25,6 +25,15 @@ agent any
             }
         }
         
+         stage('code quality'){
+            steps{
+                withSonarQubeEnv('SonarQube'){
+                  sh "mvn sonar:sonar"   
+                }
+               
+            }
+        }
+        
         stage('Publish Extent Report'){
             steps{
                      publishHTML([allowMissing: false,
