@@ -126,7 +126,7 @@ public class DriverFactory {
 		
 	}
 
-	public Properties init_properties() throws NullPointerException  {
+	public Properties init_properties()   {
 		prop = new Properties();
 		FileInputStream fis = null;
 
@@ -139,16 +139,9 @@ public class DriverFactory {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			finally {
+			
 				
-					try {
-						fis.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				
-			}
+			
 			
 		} else {
 			switch (envName.toLowerCase()) {
@@ -159,16 +152,7 @@ public class DriverFactory {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				finally {
-					
-						try {
-							fis.close();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					
-				}
+				
 
 				break;
 
