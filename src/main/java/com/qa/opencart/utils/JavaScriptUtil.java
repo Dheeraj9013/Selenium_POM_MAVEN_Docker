@@ -29,6 +29,7 @@ public class JavaScriptUtil {
 		try { 
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -113,7 +114,8 @@ public class JavaScriptUtil {
 		for (int i = 0; i < 25; i++) {
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+			} catch (InterruptedException ie) {
+				ie.printStackTrace();
 			}
 			// To check page ready state.
 			if (js.executeScript("return document.readyState").toString().equals("complete")) {
