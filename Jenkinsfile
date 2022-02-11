@@ -31,7 +31,7 @@ agent any
                 git url: 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
             }
         }
-        stage('build && SonarQube analysis') {
+        stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     // Optionally use a Maven environment you've configured already
