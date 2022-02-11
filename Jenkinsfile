@@ -12,7 +12,7 @@ pipeline
         {
             steps 
             {
-                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                 git 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker.git'
                  sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             post 
