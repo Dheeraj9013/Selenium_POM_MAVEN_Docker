@@ -35,7 +35,18 @@ pipeline
             }
         }
         
-        
+        stage('SonarQube') {
+        	steps {
+                	withSonarQubeEnv('sonar123'){
+           
+                	bat  "mvn sonar:sonar" 
+  					  
+                	}
+
+                    
+                }
+        	    
+        	}
                 
      
         stage('Publish Allure Reports') {
