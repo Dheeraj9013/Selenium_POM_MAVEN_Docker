@@ -2,6 +2,12 @@ pipeline {
 agent any 
 	
     stages { 
+    
+      stage('SCM') {
+            steps {
+                git url: 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
+            }
+        }
         
         stage ('Build Jar') { 
             steps{
@@ -26,12 +32,8 @@ agent any
         }
         
          
-        stage('SCM') {
-            steps {
-                git url: 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
-            }
-        }
-        stage('SonarQube analysis') {
+       
+        stage('SonarQube') {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     // Optionally use a Maven environment you've configured already
@@ -39,6 +41,7 @@ agent any
                         sh 'mvn clean package sonar:sonar'
                     }
                 }
+            }
             }
         
         
@@ -66,4 +69,4 @@ agent any
         }
 
  }
- }
+ 
