@@ -29,7 +29,7 @@ pipeline
         stage('Regression Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
+                    git 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker.git'
                     bat "mvn clean install"
                 }
             }
