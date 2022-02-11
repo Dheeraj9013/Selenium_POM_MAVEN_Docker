@@ -25,14 +25,22 @@ agent any
             }
         }
         
-         stage('code quality'){
-            steps{
-                withSonarQubeEnv('SonarQube'){
-                  sh "mvn sonar:sonar"   
-                }
-               
+         
+        stage('SCM') {
+            steps {
+                git url: 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
             }
         }
+        stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'maven') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        
         
         stage('Publish Extent Report'){
             steps{
