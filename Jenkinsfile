@@ -29,8 +29,9 @@ agent any
         
          
        
-        stage('SonarQube analysis') {
-    		def scannerHome = tool 'SonarQube';
+        stage('SonarQube') {
+        	steps{
+        	def scannerHome = tool 'SonarQube';
     		withSonarQubeEnv('SonarQube') {
       		 bat "${scannerHome}/bin/sonar-scanner \
       		-D sonar.login=admin \
@@ -39,6 +40,10 @@ agent any
       		-D sonar.exclusions=vendor/**,resources/**,**/*.java \
       		-D sonar.host.url=http://localhost:9000/"
     	}
+        	    
+        	}
+
+    		
   	}
         
         
