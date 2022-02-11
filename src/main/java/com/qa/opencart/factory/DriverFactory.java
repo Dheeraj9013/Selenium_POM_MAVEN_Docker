@@ -172,7 +172,7 @@ public class DriverFactory {
 					}
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("File not found exception");
 				}
 				finally { //  finally blocks are guaranteed to be executed
 				    // close() can throw an IOException too, so we got to wrap that too

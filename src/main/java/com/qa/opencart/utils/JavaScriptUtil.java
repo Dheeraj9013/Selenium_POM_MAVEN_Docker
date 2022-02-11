@@ -13,7 +13,7 @@ public class JavaScriptUtil {
 		this.driver = driver;
 	}
 
-	public void flash(WebElement element) {
+	public void flash(WebElement element) throws InterruptedException {
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		String bgcolor = element.getCssValue("backgroundColor");
 		for (int i = 0; i < 20; i++) {
@@ -22,15 +22,13 @@ public class JavaScriptUtil {
 		}
 	}
 
-	private void changeColor(String color, WebElement element) {
+	private void changeColor(String color, WebElement element) throws InterruptedException {
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("arguments[0].style.backgroundColor = '" + color + "'", element);
 
-		try { 
+		
 			Thread.sleep(20);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void drawBorder(WebElement element) {
