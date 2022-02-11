@@ -142,7 +142,7 @@ public class DriverFactory {
 			finally {
 				try {
 					fis.close();
-				} catch (IOException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -160,7 +160,7 @@ public class DriverFactory {
 				finally {
 					try {
 						fis.close();
-					} catch (IOException e) {
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
