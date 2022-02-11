@@ -38,7 +38,7 @@ public class ElementUtil extends DriverFactory {
 		return elementsList;
 	}
 
-	public WebElement getElement(By locator) throws InterruptedException {
+	public WebElement getElement(By locator) {
 		WebElement element = null;
 		
 
@@ -47,30 +47,37 @@ public class ElementUtil extends DriverFactory {
 
 			System.out.println(highlight);
 			if (Boolean.parseBoolean(highlight)) {
-				jsUtil.flash(element);
+				
+					try {
+						jsUtil.flash(element);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
 			}
 			System.out.println("WebElement is created successfully : " + locator);
-			return element;
 
 		
+		return element;
 	}
 
-	public void doSendKeys(By locator, String value) throws InterruptedException {
+	public void doSendKeys(By locator, String value) {
 		waitForElementPresent(locator, 10, 1);
 		getElement(locator).sendKeys(value);
 	}
 
-	public void doClick(By locator) throws InterruptedException {
+	public void doClick(By locator) {
 		waitForElementPresent(locator, 10, 1);
 		getElement(locator).click();
 	}
 
-	public String doGetText(By locator) throws InterruptedException {
+	public String doGetText(By locator) {
 		waitForElementPresent(locator, 10, 1);
 		return getElement(locator).getText();
 	}
 
-	public boolean doIsDisplayed(By locator) throws InterruptedException {
+	public boolean doIsDisplayed(By locator) {
 		waitForElementPresent(locator, 10, 1);
 		return getElement(locator).isDisplayed();
 	}
@@ -78,26 +85,26 @@ public class ElementUtil extends DriverFactory {
 	// **********************************Drop Down Utils
 	// *********************************
 
-	public void doSelectByVisibleText(By locator, String value) throws InterruptedException {
+	public void doSelectByVisibleText(By locator, String value) {
 		Select select = new Select(getElement(locator));
 		select.selectByVisibleText(value);
 	}
 
-	public void doSelectByIndex(By locator, String index) throws InterruptedException {
+	public void doSelectByIndex(By locator, String index) {
 		Select select = new Select(getElement(locator));
 		select.selectByIndex(Integer.parseInt(index));
 	}
 
-	public void doSelectByValue(By locator, String value) throws InterruptedException {
+	public void doSelectByValue(By locator, String value) {
 		Select select = new Select(getElement(locator));
 		select.selectByValue(value);
 	}
 
-	public int doDropDownOptionsCount(By locator) throws InterruptedException {
+	public int doDropDownOptionsCount(By locator) {
 		return doGetDropDownOptions(locator).size();
 	}
 
-	public ArrayList<String> doGetDropDownOptions(By locator) throws InterruptedException {
+	public ArrayList<String> doGetDropDownOptions(By locator) {
 		ArrayList<String> ar = new ArrayList<String>();
 		Select select = new Select(getElement(locator));
 		List<WebElement> OptionsList = select.getOptions();
@@ -109,7 +116,7 @@ public class ElementUtil extends DriverFactory {
 		return ar;
 	}
 
-	public void doSelectDropDownValue(By locator, String value) throws InterruptedException {
+	public void doSelectDropDownValue(By locator, String value) {
 		Select selectday = new Select(getElement(locator));
 		List<WebElement> OptionsList = selectday.getOptions();
 
@@ -169,19 +176,19 @@ public class ElementUtil extends DriverFactory {
 	// **********************************Actions class Utils
 	// *********************************
 
-	public void doDragAndDrop(By source, By target) throws InterruptedException {
+	public void doDragAndDrop(By source, By target) {
 		Actions action = new Actions(driver);
 		WebElement sourceEle = getElement(source);
 		WebElement targetEle = getElement(target);
 		action.dragAndDrop(sourceEle, targetEle).build().perform();
 	}
 
-	public void doActionsSendKeys(By locator, String value) throws InterruptedException {
+	public void doActionsSendKeys(By locator, String value) {
 		Actions action = new Actions(driver);
 		action.sendKeys(getElement(locator), value).build().perform();
 	}
 
-	public void doActionsClick(By locator) throws InterruptedException {
+	public void doActionsClick(By locator) {
 		waitForElementPresent(locator, 10, 1);
 		Actions action = new Actions(driver);
 		action.click(getElement(locator)).build().perform();
@@ -206,7 +213,7 @@ public class ElementUtil extends DriverFactory {
 		return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 	}
 
-	public WebElement waitForElementToBeVisible(By locator, int timeout) throws InterruptedException {
+	public WebElement waitForElementToBeVisible(By locator, int timeout) {
 		WebElement element = getElement(locator);
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.visibilityOf(element));
