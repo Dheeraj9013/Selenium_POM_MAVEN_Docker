@@ -139,6 +139,16 @@ public class DriverFactory {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally { //  finally blocks are guaranteed to be executed
+			    // close() can throw an IOException too, so we got to wrap that too
+			    try {
+			        if (fis != null) {
+			            fis.close();
+			        }        
+			    } catch (IOException e) {
+			        // handle an exception, or often we just ignore it
+			    }
+			}
 			
 				
 			
@@ -151,6 +161,16 @@ public class DriverFactory {
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				finally { //  finally blocks are guaranteed to be executed
+				    // close() can throw an IOException too, so we got to wrap that too
+				    try {
+				        if (fis != null) {
+				            fis.close();
+				        }        
+				    } catch (IOException e) {
+				        // handle an exception, or often we just ignore it
+				    }
 				}
 				
 
