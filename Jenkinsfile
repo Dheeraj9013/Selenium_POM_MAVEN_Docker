@@ -7,7 +7,7 @@ agent any
         
         stage ('Build Jar') { 
             steps{
-                bat "mvn clean install -DskipTests"
+                bat "mvn compile"
 
             }
         }
@@ -34,7 +34,7 @@ agent any
         stage('SonarQube') {
         	steps {
                 	withSonarQubeEnv('sonar123'){
-                	bat  "mvn sonar:sonar" 
+                	bat  "mvnsonar:sonar" 
   					  
                 	}
 
