@@ -37,9 +37,9 @@ agent any
             steps {
                 withSonarQubeEnv('SonarQube') {
                     // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'maven') {
-                        bat 'mvn clean package sonar:sonar'
-                    }
+             
+                        bat 'mvn sonar:sonar'
+                    
                 }
             }
             }
