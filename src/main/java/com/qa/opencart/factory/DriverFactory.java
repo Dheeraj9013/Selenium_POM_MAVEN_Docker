@@ -25,9 +25,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
-	public WebDriver driver;
-	public Properties prop;
-	public OptionManager optionmanager;
+	public static final WebDriver driver = null;
+	public static final Properties prop = new Properties();
+	public static OptionManager optionmanager = null;
 	public static String highlight;
 	// Thread is mainly Due to Parrallel Execution in our Test . Separate local Copy
 	// of Driver will be Created.
@@ -127,7 +127,7 @@ public class DriverFactory {
 	}
 
 	public Properties init_properties() throws FileNotFoundException   {
-		prop = new Properties();
+		
 		FileInputStream fis = null;
 
 		String envName = System.getProperty("env");
