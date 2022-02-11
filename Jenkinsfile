@@ -34,7 +34,7 @@ agent any
         stage('SonarQube') {
         	steps {
                 	withSonarQubeEnv('sonar123'){
-                	 mvn clean verify sonar:sonar 
+                	bat  "mvn clean verify sonar:sonar" 
   					  
                 	}
 
