@@ -139,6 +139,15 @@ public class DriverFactory {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		} else {
 			switch (envName.toLowerCase()) {
 			case "qa":
@@ -147,6 +156,14 @@ public class DriverFactory {
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				finally {
+					try {
+						fis.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 				break;
