@@ -7,7 +7,7 @@ agent any
         
         stage ('Build Jar') { 
             steps{
-                bat "mvn clean install -DskipTests=true"
+                bat "mvn clean install"
 
             }
         }
