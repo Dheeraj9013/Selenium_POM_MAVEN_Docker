@@ -2,6 +2,7 @@ package com.qa.opencart.tests;
 
 
 
+import java.io.FileNotFoundException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -40,7 +41,7 @@ public class BaseTest {
 	
 	@BeforeTest
 	@Parameters({"browser" ,"browserversion"})
-	public void setup(String browser , String browserVersion) {
+	public void setup(String browser , String browserVersion) throws FileNotFoundException {
 		
 		fac = new DriverFactory();
 		prop = fac.init_properties();

@@ -36,7 +36,7 @@ public class ExtentReportListener extends DriverFactory implements ITestListener
 				Files.createDirectories(path);
 			} catch (IOException e) {
 				// fail to create directory
-				e.printStackTrace();
+				throw new RuntimeException(e);
 			}
 		}
 		

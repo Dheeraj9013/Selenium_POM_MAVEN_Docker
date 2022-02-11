@@ -107,7 +107,7 @@ public class DriverFactory {
 				tldriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),dc));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("The URL is not valid.");
 			}
 		}
 		else if(browser.equalsIgnoreCase("firefox")) {
@@ -120,31 +120,29 @@ public class DriverFactory {
 				tldriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),dc));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("The URL is not valid.");
 			}
 		}
 		
 	}
 
-	public Properties init_properties()   {
+	public Properties init_properties() throws FileNotFoundException   {
 		prop = new Properties();
 		FileInputStream fis = null;
 
 		String envName = System.getProperty("env");
 		if (envName == null) {
-			try {
+			
 				fis = new FileInputStream("./src/test/resources/config/config.properties");
 				try {
 					prop.load(fis);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("IO Exception will occur");
 				}
 
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			
 			finally { //  finally blocks are guaranteed to be executed
 			    // close() can throw an IOException too, so we got to wrap that too
 			    try {
@@ -211,7 +209,7 @@ public class DriverFactory {
 			FileUtils.copyFile(src, filepath);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 
 		return path;

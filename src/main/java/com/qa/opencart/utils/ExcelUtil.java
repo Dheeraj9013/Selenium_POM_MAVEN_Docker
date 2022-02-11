@@ -38,11 +38,11 @@ public class ExcelUtil {
 			
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
 		} catch (InvalidFormatException e) {
-			e.printStackTrace();
+			System.out.println("invalid format  exception");
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 
 		return data;
