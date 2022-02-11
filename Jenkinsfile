@@ -1,12 +1,16 @@
 pipeline { 
 agent any 
-	
-    stages { 
+tools{
     
-      
-        
-        stage ('Build Jar') { 
+    maven "maven"
+}
+
+	
+    stages {
+   
+    stage ('Build Jar') { 
             steps{
+            	git 'https://github.com/Dheeraj9013/Selenium_POM_MAVEN_Docker'
                 bat "mvn clean install -DskipTests=true"
 
             }
