@@ -19,6 +19,9 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<aspectj.version>1.9.5</aspectj.version>
 		<extentreports-version>5.0.8</extentreports-version>
+		<sonar.host.url>
+			http://localhost:9000
+		</sonar.host.url>
 	</properties>
 
 	<dependencies>
@@ -113,7 +116,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
+
 
 
 
