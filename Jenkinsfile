@@ -5,12 +5,7 @@ agent any
     
       
         
-        stage ('Build Jar') { 
-            steps{
-                bat "mvn clean install"
-
-            }
-        }
+        
         
         //stage('docker-grid') {
             //steps {
